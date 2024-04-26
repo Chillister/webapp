@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
       app: webapp
-  replicas: 3
+  replicas: {{ .Values.replicas }}
   template:
     metadata:
       labels:   
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: ghcr.io/go4clouds/webapp:v0.1.0
+        image: {{ .Values.imageName }}:v{{ .Chart.AppVersion }}
         ports:
         - name: http
           containerPort: 80
