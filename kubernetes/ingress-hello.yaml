@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hello
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: web07.go4clouds.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webapp
+                port:
+                  number: 8080
+
+  tls:
+    - hosts:
+      - web07.go4clouds.net
+      secretName: web-go4clouds-net-tls

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-world2
+  name: hello-world2
+  namespace: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-world2
+    spec:
+      containers:
+      - image: gcr.io/google-samples/hello-app:2.0
+        name: hello-app
+        resources: {}
+status: {}
