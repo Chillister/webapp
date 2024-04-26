@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: webapp
 spec:
+<<<<<<< HEAD
   selector:
     matchLabels:
       app: webapp
@@ -10,12 +11,47 @@ spec:
   template:
     metadata:
       labels:   
+=======
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+>>>>>>> 2849215d6f7a4a556ccf78545188a25b1808885a
         app: webapp
     spec:
       containers:
       - name: webapp
+<<<<<<< HEAD
         image: ghcr.io/go4clouds/webapp:v0.1.0
         ports:
         - name: http
           containerPort: 8081
           protocol: TCP   
+=======
+        image: ghcr.io/go4clouds/webapp:v0.1.1
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "500m"
+            memory: "128Mi"
+        ports:
+        - name: http
+          containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+            httpHeaders:
+            - name: Custom-Header
+              value: Awesome
+>>>>>>> 2849215d6f7a4a556ccf78545188a25b1808885a
