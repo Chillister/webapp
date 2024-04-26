@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: lfs09.go4clouds.net
+    - host: web07.go4clouds.net
       http:
         paths:
         - path: /
