@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  namespace: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: ghcr.io/go4clouds/webapp:v0.1.0
+        ports:
+        - name: http
+          containerPort: 8081
+          protocol: TCP 
